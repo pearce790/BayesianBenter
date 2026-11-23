@@ -1,0 +1,32 @@
+url: https://pearce790.github.io/BayesianBenter/
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#1f5c99"
+    base_font: {google: "Source Sans Pro"}
+    heading_font: {google: "Source Sans Pro"}
+    code_font: {google: "Source Code Pro"}
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+
+reference:
+- title: "Model fitting"
+  desc: >
+    Fit the Benter model to complete or partial rankings by Gibbs sampling.
+  contents:
+  - gibbsBenter
+- title: "Simulation"
+  desc: >
+    Generate rankings from the Benter model.
+  contents:
+  - rBenter
+
+articles:
+- title: "Get started"
+  navbar: ~
+  contents:
+  - getting-started

@@ -1,0 +1,33 @@
+Package: BayesianBenter
+Title: Bayesian Estimation of the Benter Model for Rankings
+Version: 0.0.0.9000
+Authors@R:
+    person("Michael", "Pearce", , "pearce790@gmail.com",
+           role = c("aut", "cre"))
+Description: An efficient Gibbs sampler for Bayesian inference in the Benter
+    model for ranking data, a generalization of the Plackett-Luce model that
+    introduces stage-specific dampening (noise) parameters. Estimation uses
+    exponential and alpha-stable data augmentation that preserves conjugacy, 
+    giving exact Gamma draws to worth parameters and MH updates of dampening 
+    parameters. Both complete and partial (top-R) rankings are supported.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Depends:
+    R (>= 3.6.0)
+Imports:
+    copula,
+    dplyr,
+    matrixStats,
+    stats,
+    utils
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+URL: https://pearce790.github.io/BayesianBenter/,
+    https://github.com/pearce790/BayesianBenter
+BugReports: https://github.com/pearce790/BayesianBenter/issues
