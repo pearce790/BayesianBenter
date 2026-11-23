@@ -1,0 +1,89 @@
+# BayesianBenter
+
+**BayesianBenter** provides closed-form Gibbs samplers for Bayesian
+inference in the **Benter (1994)** model for ranking data. The Benter
+model generalizes Plackett-Luce by adding stage-specific *dampening*
+exponents $`\alpha_r \in (0, 1]`$ that down-weight the information in
+later ranking stages:
+
+``` math
+p(\pi_i \mid \lambda, \alpha) = \prod_{r=1}^{J-1}
+  \frac{\lambda_{w_{ir}}^{\alpha_r}}{\sum_{j \in R_{ir}} \lambda_j^{\alpha_r}}.
+```
+
+Estimation uses a positive-stable frailty data augmentation that
+restores conjugacy: the item worths $`\lambda`$ are drawn exactly from
+Gamma full conditionals, and each dampening exponent $`\alpha_r`$ is
+updated by Metropolis-Hastings on its collapsed conditional. Both
+**complete** and **partial (top-$`R`$)** rankings are supported through
+a single entry point.
+
+## Installation
+
+Install the development version from GitHub:
+
+``` r
+
+# install.packages("remotes")
+remotes::install_github("pearce790/BayesianBenter")
+```
+
+## Usage
+
+``` r
+
+library(BayesianBenter)
+
+set.seed(1)
+lambda <- c(5, 3, 2, 1.5, 1)
+lambda <- lambda / sum(lambda)
+alpha  <- c(1, 0.8, 0.5, 0.3)
+
+# simulate 500 complete rankings of J = 5 items
+pi <- rBenter(500, lambda, alpha)
+
+# fit the model
+fit <- gibbsBenter(pi, J = 5, a = 1, b = 1, c = 1, d = 1,
+                   iters = 3000, burnin = 0.5)
+
+rbind(truth = lambda, posterior_mean = colMeans(fit$lambda))
+rbind(truth = alpha,  posterior_mean = colMeans(fit$alpha))
+```
+
+Partial rankings are passed the same way: leave unranked positions as
+`NA` (or supply fewer than `J` columns) and
+[`gibbsBenter()`](https://pearce790.github.io/BayesianBenter/reference/gibbsBenter.md)
+routes them to the partial-ranking sampler automatically. Only the
+dampening parameters up to the deepest observed rank are estimated; the
+rest are returned as `NA`.
+
+## References
+
+Benter, W. (1994). Computer-based horse race handicapping and wagering
+systems: A report. In *Efficiency of Racetrack Betting Markets*.
+
+Pearce, M. (2026). Efficient Bayesian Inference for Benter Models on
+Ranked Data. *arXiv:2608.23825*.
+
+# Package index
+
+## Model fitting
+
+Fit the Benter model to complete or partial rankings by Gibbs sampling.
+
+- [`gibbsBenter()`](https://pearce790.github.io/BayesianBenter/reference/gibbsBenter.md)
+  : Bayesian estimation of the Benter ranking model
+
+## Simulation
+
+Generate rankings from the Benter model.
+
+- [`rBenter()`](https://pearce790.github.io/BayesianBenter/reference/rBenter.md)
+  : Simulate complete rankings from the Benter model
+
+# Articles
+
+### Get started
+
+- [Getting started with
+  BayesianBenter](https://pearce790.github.io/BayesianBenter/articles/getting-started.md):
