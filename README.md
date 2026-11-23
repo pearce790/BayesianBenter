@@ -1,13 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# BayesianBenter
+# BayesianBenter <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/USERNAME/BayesianBenter/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/USERNAME/BayesianBenter/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/pearce790/BayesianBenter/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pearce790/BayesianBenter/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **BayesianBenter** provides closed-form Gibbs samplers for Bayesian
@@ -34,7 +34,7 @@ Install the development version from GitHub:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("USERNAME/BayesianBenter")
+remotes::install_github("pearce790/BayesianBenter")
 ```
 
 ## Usage
@@ -68,3 +68,6 @@ returned as `NA`.
 
 Benter, W. (1994). Computer-based horse race handicapping and wagering
 systems: A report. In *Efficiency of Racetrack Betting Markets*.
+
+Pearce, M. (2026). Efficient Bayesian Inference for Benter Models on
+Ranked Data. *arXiv:2608.23825*.
